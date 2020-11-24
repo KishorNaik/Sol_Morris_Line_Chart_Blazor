@@ -1,0 +1,56 @@
+﻿@if (this.IsLoad == false)
+{
+    <h1>Loading..</h1>
+}
+else
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-dark" @onclick="this.OnDisplaySalesChart">Show Sales Chart</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9 col-sm-9">
+                <MorrisLinesChart @ref="this.LineChartM"
+                                  Height="250"
+                                  ItemSourceJson="@this.LineChartResultSetJson"
+                                  Xkey="@this.XKey"
+                                  YKeysJson="@this.YKeysJson"
+                                  LablesJson="@this.LablesJson"
+                                  OnHover="this.OnHoverGetData">
+                </MorrisLinesChart>
+            </div>
+            <div class="col-md-3 col-sm-3">
+                @if (this.DataMessage != null)
+                {
+                    <div class="card">
+                        <div class="card-header">
+                            Legend
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div>
+                                    <h5>Year</h5>
+                                    <h6>@this.DataMessage.Year</h6>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div>
+                                    <h5>Sales</h5>
+                                    <h6>@this.DataMessage.SalesAmount</h6>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div>
+                                    <h5>Expenses</h5>
+                                    <h6>@this.DataMessage.ExpenseAmount</h6>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
